@@ -4,18 +4,15 @@ let arrayFoo = [1, 2, 3, 10, 6, 12, 8, 21];
 
 let allSums = arrayFoo.sort((a,b)=>a-b).reduce((r,o) => {  
     for(var i = 1; i < arrayFoo.length; i++) {
-        r = [...r, o + arrayFoo[i]]
+        let sum =  o + arrayFoo[i]
+        if(r.indexOf(sum) < 0) r = [...r, sum];
     }
-    return [...r, o];
-}, [])
-//remove duplicate
-allSums = allSums.sort((a,b)=>a-b).reduce((r,o) => {
-    if(r.indexOf(o) < 0) r = [...r, o];
-    
+    if(r.indexOf(o) < 0) r = [...r, o]
     return r;
 }, [])
+
 //get smallest sum
-let smallestNumber = allSums.reduce((r,o) => {
+let smallestNumber = allSums.sort((a,b)=>a-b).reduce((r,o) => {
     if(r !== o) r++;    
     return r;
 }, 1)
